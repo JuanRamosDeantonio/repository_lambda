@@ -1,0 +1,20 @@
+﻿2025-07-01 15:13:12 [INFO] - INICIANDO: Preparacion del paquete Lambda
+2025-07-01 15:13:12 [INFO] - VALIDACION: .NET Framework disponible
+2025-07-01 15:13:12 [INFO] - LIMPIEZA: Limpiando carpetas si existen
+2025-07-01 15:13:12 [INFO] - SETUP: Creando carpetas de trabajo
+2025-07-01 15:13:12 [WARNING] - ADVERTENCIA: requirements.txt no encontrado
+2025-07-01 15:13:12 [INFO] - COPIA: Copiando archivos fuente con exclusiones agresivas
+2025-07-01 15:13:12 [INFO] - COPIA: Se copiaron 3 archivos (0 MB), se excluyeron 31
+2025-07-01 15:13:12 [INFO] - OPTIMIZACION: Optimizando dependencias pesadas para AWS Lambda
+2025-07-01 15:13:12 [INFO] - OPTIMIZACION: Optimizacion de dependencias completada
+2025-07-01 15:13:12 [INFO] - CONTEO: Se empaquetaran 3 archivos en total (post-optimizacion)
+2025-07-01 15:13:12 [INFO] - VERIFICACION: Se encontraron 3 archivos Python
+2025-07-01 15:13:12 [INFO] - COMPRESION: Empaquetando ZIP con compresion Optimal
+2025-07-01 15:13:12 [SUCCESS] - EXITO: ZIP creado en: C:\devwork\repository_lambda\Publicar\repository_lambda_20250701_151312.zip
+2025-07-01 15:13:12 [INFO] - VALIDACION: Validando integridad del ZIP
+2025-07-01 15:13:12 [SUCCESS] - EXITO: ZIP contiene 3 entradas
+2025-07-01 15:13:12 [INFO] - TAMANO: ZIP final de 0 MB
+2025-07-01 15:13:12 [SUCCESS] - EXITO: ZIP de 0 MB - OK para carga directa en consola AWS
+2025-07-01 15:13:12 [INFO] - LIMPIEZA: Carpeta build eliminada
+2025-07-01 15:13:12 [INFO] - COMPLETADO: Paquete listo para AWS Lambda
+2025-07-01 15:13:12 [INFO] - UBICACION: C:\devwork\repository_lambda\Publicar\repository_lambda_20250701_151312.zip
