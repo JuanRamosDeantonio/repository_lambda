@@ -3,8 +3,8 @@ import json
 
 from typing import Dict, Any
 
-from app.services.sender_to_repo import sender_to_repo
-from app.core.http_responses import create_error_response
+from uploader_file.services.sender_to_repo import sender_to_repo
+from uploader_file.utils.http_responses import create_error_response
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
@@ -17,6 +17,8 @@ def lambda_handler(event: Dict[str, Any], context: Any):
 
         body = event.get("body")
 
+        logger.info("Obtención del body en el evento de la lambda: %s", body)
+
         if isinstance(body, str):
             try:
                 body = json.loads(body)
@@ -24,6 +26,8 @@ def lambda_handler(event: Dict[str, Any], context: Any):
                 raise ValueError(f"JSON inválido en el cuerpo de la solicitud: {e}")
 
         report = body.get("report")
+
+        logger.info("Obtención del reporte del objeto: %s", report)
 
         if not report:
             raise ValueError("Falta parámetro requerido: 'report'")
