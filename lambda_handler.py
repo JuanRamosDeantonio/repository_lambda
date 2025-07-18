@@ -118,8 +118,8 @@ def lambda_handler(event: Dict[str, Any], context: Any):
         logger.info(f"Report recibido: {report}")
         
         # Validar que report es una lista
-        if not isinstance(report, list):
-            error_msg = "El parámetro 'report' debe ser un arreglo de strings"
+        if not isinstance(report, list) and not isinstance(report, str):
+            error_msg = "Bad type value for the key"
             logger.error(error_msg)
             return {
                 "statusCode": 400,
@@ -127,7 +127,10 @@ def lambda_handler(event: Dict[str, Any], context: Any):
             }
         
         # Convertir el arreglo de strings en un solo string con saltos de línea
-        file_content = '''\n'''.join(report)
+        if isinstance(report, list):
+            file_content = '''\n'''.join(report)
+        elif isinstance(report, str):
+            file_content = report
         
         logger.info(f"Contenido del archivo generado ({len(file_content)} caracteres)")
         
