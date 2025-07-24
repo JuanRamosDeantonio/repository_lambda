@@ -161,7 +161,9 @@ def lambda_handler(event: Dict[str, Any], context: Any):
         # Limpiar el path del archivo (remover barras iniciales)
         file_path = file_path.lstrip('/')
 
-        file_path_signed = f'reports/file-{datetime.datetime.now()}.md'
+        time_stamp = str(datetime.datetime.now()).replace(":", "_")
+
+        file_path_signed = f'reports/file-{time_stamp}.md'
         
         logger.info(f"Configuración: owner={owner}, repo={repo}, file_path={file_path_signed}, branch={branch}")
         
