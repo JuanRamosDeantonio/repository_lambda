@@ -139,10 +139,10 @@ def lambda_handler(event: Dict[str, Any], context: Any):
         
         # Obtener variables de entorno
         token = os.environ.get('TOKEN_GHUB', "")
-        owner = os.environ.get('OWNER', "JuanRamosDeantonio")
-        repo = os.environ.get('REPO', "rules-configuration")
-        file_path = os.environ.get('FILE_NAME_REPO', 'exmpl-cod.md')  # Valor por defecto
-        branch = os.environ.get('BRANCH', 'dev')  # Valor por defecto
+        owner = os.environ.get('OWNER', "")
+        repo = os.environ.get('REPO', "")
+        file_path = os.environ.get('FILE_NAME_REPO', "")  # Valor por defecto
+        branch = os.environ.get('BRANCH', "")  # Valor por defecto
         
         # Validar variables de entorno
         missing_vars = []
