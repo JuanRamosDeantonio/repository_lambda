@@ -4,10 +4,13 @@ import requests
 import os
 import base64
 import datetime
+import sys
 from typing import Dict, Any, Optional
 
-logger = logging.getLogger()
+logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
+handler = logging.StreamHandler()
+logger.addHandler(handler)
 
 class GitHubUploader:
     def __init__(self, token: str, owner: str, repo: str):
