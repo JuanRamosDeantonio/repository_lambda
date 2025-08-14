@@ -53,7 +53,12 @@ class GitHubUploader:
         # Codificar contenido en base64
         encoded_content = base64.b64encode(content.encode('utf-8')).decode('utf-8')
 
-        upload_bytearray(encoded_content,file_path)
+        try:
+
+            upload_bytearray(data=encoded_content,target_path=file_path, repo=self.repo)
+        
+        except Exception as e:
+            logger.error(f'Error al subir en el Jfrog -> {e}')
         
         # Preparar payload
         payload = {
