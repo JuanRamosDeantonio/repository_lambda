@@ -6,6 +6,7 @@ import base64
 import datetime
 import sys
 from typing import Dict, Any, Optional
+from upload_file import upload_bytearray
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -51,6 +52,8 @@ class GitHubUploader:
         
         # Codificar contenido en base64
         encoded_content = base64.b64encode(content.encode('utf-8')).decode('utf-8')
+
+        upload_bytearray(encoded_content,file_path)
         
         # Preparar payload
         payload = {
