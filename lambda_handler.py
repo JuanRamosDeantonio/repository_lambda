@@ -14,7 +14,7 @@ handler = logging.StreamHandler()
 logger.addHandler(handler)
 
 class GitHubUploader:
-    def __init__(self, token: str, owner: str, repo: str):
+    def __init__(self, token: str, owner: str, repo: str, artifactory_repo : str):
         self.token = token
         self.owner = owner
         self.repo = repo
@@ -24,6 +24,7 @@ class GitHubUploader:
             "Accept": "application/vnd.github+json",
             "Content-Type": "application/json"
         }
+        self.artifactory_repo = artifactory_repo
     
     def get_file_info(self, file_path: str, branch: str = "main") -> Optional[Dict[str, Any]]:
         """Obtiene información de un archivo existente (para obtener el SHA)"""
@@ -54,8 +55,8 @@ class GitHubUploader:
         encoded_content = base64.b64encode(content.encode('utf-8')).decode('utf-8')
 
         try:
-
-            upload_bytearray(data=encoded_content,target_path=file_path, repo=self.repo)
+            name = file_path.split('/')[-1].replace(" ", "")
+            upload_bytearray(data=encoded_content,target_path=name, repo=self.artifactory_repo)
         
         except Exception as e:
             logger.error(f'Error al subir en el Jfrog -> {e}')
@@ -151,6 +152,7 @@ def lambda_handler(event: Dict[str, Any], context: Any):
         repo = os.environ.get('REPO', "")
         file_path = os.environ.get('FILE_NAME_REPO', "")  # Valor por defecto
         branch = os.environ.get('BRANCH', "")  # Valor por defecto
+        artifactory_repo = os.environ.get('ARTIFACTORY_REPO', "")
         
         # Validar variables de entorno
         missing_vars = []
@@ -179,7 +181,7 @@ def lambda_handler(event: Dict[str, Any], context: Any):
         logger.info(f"Configuración: owner={owner}, repo={repo}, file_path={file_path_signed}, branch={branch}")
         
         # Crear instancia del uploader
-        uploader = GitHubUploader(token, owner, repo)
+        uploader = GitHubUploader(token, owner, repo, artifactory_repo)
         
         # Obtener información adicional del evento
         commit_message = body.get("commit_message", "Actualización automática desde Lambda")
